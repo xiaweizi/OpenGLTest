@@ -29,6 +29,12 @@
             </intent-filter>
         </activity>
 
+        <!-- Day 01: OpenGL ES 入门与环境搭建 -->
+        <activity
+            android:name=".day01.Day01Activity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

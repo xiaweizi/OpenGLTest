@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.openglstudy.adapter.DayAdapter
+import com.example.openglstudy.day01.Day01Activity
 import com.example.openglstudy.model.DayItem
 
 /**
@@ -29,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
         // 创建 14 天的学习数据
         val dayList = listOf(
-            DayItem(1, "OpenGL ES 入门与环境搭建", "理解 OpenGL ES 的基本概念，掌握 GLSurfaceView 的使用", MainActivity::class.java),
+            DayItem(1, "OpenGL ES 入门与环境搭建", "理解 OpenGL ES 的基本概念，掌握 GLSurfaceView 的使用", Day01Activity::class.java),
             DayItem(2, "渲染第一个三角形", "学习顶点数据和着色器，渲染第一个图形", MainActivity::class.java),
             DayItem(3, "着色器基础 - GLSL 语言", "深入学习 GLSL 语法，掌握 uniform、attribute、varying", MainActivity::class.java),
             DayItem(4, "纹理贴图基础", "学习纹理加载和映射，将图片渲染到 OpenGL", MainActivity::class.java),
