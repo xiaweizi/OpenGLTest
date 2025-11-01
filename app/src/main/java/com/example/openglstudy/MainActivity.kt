@@ -1,15 +1,11 @@
-package com.example.empty
+package com.example.openglstudy
 
-
-import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 
 /**
  * 主界面 Activity
- * 展示示例内容并提供 PDF 生成功能
+ * 展示 14 天 OpenGL 学习计划列表
  */
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.empty'
+    namespace 'com.example.openglstudy'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.example.empty"
+        applicationId "com.example.openglstudy"
         minSdk 26
         targetSdk 34
         versionCode 1
