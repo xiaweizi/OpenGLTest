@@ -13,6 +13,7 @@ import com.example.openglstudy.day05.Day05Activity
 import com.example.openglstudy.day06.Day06Activity
 import com.example.openglstudy.day07.Day07Activity
 import com.example.openglstudy.day08.Day08Activity
+import com.example.openglstudy.day09.Day09Activity
 import com.example.openglstudy.model.DayItem
 
 /**
@@ -45,7 +46,7 @@ class MainActivity : AppCompatActivity() {
             DayItem(6, "EGL 与 GLSurfaceView 深入", "理解 EGL 上下文，掌握渲染模式和线程管理", Day06Activity::class.java),
             DayItem(7, "FBO（帧缓冲对象）", "学习离屏渲染，实现多通道渲染效果", Day07Activity::class.java),
             DayItem(8, "多重纹理与混合", "掌握多纹理使用和混合模式", Day08Activity::class.java),
-            DayItem(9, "CameraX 基础集成", "集成 CameraX，实现相机预览功能", MainActivity::class.java),
+            DayItem(9, "CameraX 基础集成", "集成 CameraX，实现相机预览功能", Day09Activity::class.java),
             DayItem(10, "相机预览与 OpenGL 结合", "使用 SurfaceTexture 获取相机数据并渲染", MainActivity::class.java),
             DayItem(11, "实时滤镜效果", "实现灰度、复古、暖色调等滤镜效果", MainActivity::class.java),
             DayItem(12, "美颜算法 - 磨皮", "学习双边滤波算法，实现磨皮效果", MainActivity::class.java),

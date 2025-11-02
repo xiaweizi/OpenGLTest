@@ -83,9 +83,15 @@
             android:exported="false"
             android:screenOrientation="portrait" />
 
-        <!-- Day 08: 简单的图像滤镜 -->
+        <!-- Day 08: 多重纹理与混合 -->
         <activity
             android:name=".day08.Day08Activity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <!-- Day 09: CameraX 基础集成 -->
+        <activity
+            android:name=".day09.Day09Activity"
             android:exported="false"
             android:screenOrientation="portrait" />
 
