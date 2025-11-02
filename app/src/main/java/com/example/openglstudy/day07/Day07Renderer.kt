@@ -139,9 +139,21 @@ class Day07Renderer(private val context: Context) : GLSurfaceView.Renderer {
         }
     """.trimIndent()
 
-    // 全屏四边形顶点（用于渲染纹理）
-    private val quadVertices = floatArrayOf(
-        // 位置          纹理坐标
+    // Pass 1: 渲染原始图片到 FBO（需要翻转 Y 轴，因为 Bitmap 坐标系与 OpenGL 不同）
+    private val quadVerticesFlipped = floatArrayOf(
+        // 位置          纹理坐标（Y 轴翻转）
+        -1f,  1f, 0f,   0f, 0f,  // 左上 → 纹理左下
+        -1f, -1f, 0f,   0f, 1f,  // 左下 → 纹理左上
+         1f,  1f, 0f,   1f, 0f,  // 右上 → 纹理右下
+
+        -1f, -1f, 0f,   0f, 1f,  // 左下 → 纹理左上
+         1f, -1f, 0f,   1f, 1f,  // 右下 → 纹理右上
+         1f,  1f, 0f,   1f, 0f   // 右上 → 纹理右下
+    )
+
+    // Pass 2: 从 FBO 渲染到屏幕（不翻转，FBO 纹理已经是正确方向）
+    private val quadVerticesNormal = floatArrayOf(
+        // 位置          纹理坐标（正常）
         -1f,  1f, 0f,   0f, 1f,  // 左上
         -1f, -1f, 0f,   0f, 0f,  // 左下
          1f,  1f, 0f,   1f, 1f,  // 右上
@@ -151,7 +163,8 @@ class Day07Renderer(private val context: Context) : GLSurfaceView.Renderer {
          1f,  1f, 0f,   1f, 1f   // 右上
     )
 
-    private lateinit var vertexBuffer: FloatBuffer
+    private lateinit var vertexBufferFlipped: FloatBuffer
+    private lateinit var vertexBufferNormal: FloatBuffer
 
     // Pass 1: 渲染原图到 FBO
     private var simpleProgram: Int = 0
@@ -187,12 +200,19 @@ class Day07Renderer(private val context: Context) : GLSurfaceView.Renderer {
         Log.d(TAG, "onSurfaceCreated: 开始初始化")
         GLES20.glClearColor(0.0f, 0.0f, 0.0f, 1.0f)
 
-        // 创建顶点缓冲
-        vertexBuffer = ByteBuffer.allocateDirect(quadVertices.size * 4)
+        // 创建翻转的顶点缓冲（用于 Pass 1）
+        vertexBufferFlipped = ByteBuffer.allocateDirect(quadVerticesFlipped.size * 4)
             .order(ByteOrder.nativeOrder())
             .asFloatBuffer()
-            .put(quadVertices)
-        vertexBuffer.position(0)
+            .put(quadVerticesFlipped)
+        vertexBufferFlipped.position(0)
+
+        // 创建正常的顶点缓冲（用于 Pass 2）
+        vertexBufferNormal = ByteBuffer.allocateDirect(quadVerticesNormal.size * 4)
+            .order(ByteOrder.nativeOrder())
+            .asFloatBuffer()
+            .put(quadVerticesNormal)
+        vertexBufferNormal.position(0)
         Log.d(TAG, "onSurfaceCreated: 顶点缓冲创建完成")
 
         // 编译 Pass 1 着色器（简单纹理渲染）
@@ -308,8 +328,8 @@ class Day07Renderer(private val context: Context) : GLSurfaceView.Renderer {
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, originalTextureId)
         GLES20.glUniform1i(GLES20.glGetUniformLocation(simpleProgram, "uTexture"), 0)
 
-        // 绘制全屏四边形
-        drawQuad(simpleProgram)
+        // 绘制全屏四边形（使用翻转的顶点缓冲）
+        drawQuad(simpleProgram, vertexBufferFlipped)
 
         // 解绑 FBO
         GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, 0)
@@ -340,8 +360,8 @@ class Day07Renderer(private val context: Context) : GLSurfaceView.Renderer {
         // 设置纹理像素大小（用于模糊和边缘检测）
         GLES20.glUniform2f(uTexelSizeLocation, 1.0f / fboWidth, 1.0f / fboHeight)
 
-        // 绘制全屏四边形
-        drawQuad(filterProgram)
+        // 绘制全屏四边形（使用正常的顶点缓冲）
+        drawQuad(filterProgram, vertexBufferNormal)
 
         // 解绑纹理
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, 0)
@@ -349,8 +369,10 @@ class Day07Renderer(private val context: Context) : GLSurfaceView.Renderer {
 
     /**
      * 绘制全屏四边形
+     * @param program 着色器程序
+     * @param vertexBuffer 顶点缓冲（包含位置和纹理坐标）
      */
-    private fun drawQuad(program: Int) {
+    private fun drawQuad(program: Int, vertexBuffer: FloatBuffer) {
         val aPositionLocation = GLES20.glGetAttribLocation(program, "aPosition")
         val aTexCoordLocation = GLES20.glGetAttribLocation(program, "aTexCoord")
 
