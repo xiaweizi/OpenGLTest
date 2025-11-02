@@ -134,15 +134,16 @@ class Day08Renderer(private val context: Context) : GLSurfaceView.Renderer {
     """.trimIndent()
 
     // 全屏四边形顶点（位置 + 纹理坐标）
+    // 注意：纹理坐标 Y 轴已翻转，解决 Bitmap 坐标系与 OpenGL 坐标系不一致的问题
     private val quadVertices = floatArrayOf(
-        // 位置          纹理坐标
-        -1f,  1f, 0f,   0f, 1f,  // 左上
-        -1f, -1f, 0f,   0f, 0f,  // 左下
-         1f,  1f, 0f,   1f, 1f,  // 右上
+        // 位置          纹理坐标（Y 轴翻转）
+        -1f,  1f, 0f,   0f, 0f,  // 左上 → 纹理左下
+        -1f, -1f, 0f,   0f, 1f,  // 左下 → 纹理左上
+         1f,  1f, 0f,   1f, 0f,  // 右上 → 纹理右下
 
-        -1f, -1f, 0f,   0f, 0f,  // 左下
-         1f, -1f, 0f,   1f, 0f,  // 右下
-         1f,  1f, 0f,   1f, 1f   // 右上
+        -1f, -1f, 0f,   0f, 1f,  // 左下 → 纹理左上
+         1f, -1f, 0f,   1f, 1f,  // 右下 → 纹理右上
+         1f,  1f, 0f,   1f, 0f   // 右上 → 纹理右下
     )
 
     private lateinit var vertexBuffer: FloatBuffer
