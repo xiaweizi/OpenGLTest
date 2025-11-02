@@ -11,6 +11,7 @@ import com.example.openglstudy.day03.Day03Activity
 import com.example.openglstudy.day04.Day04Activity
 import com.example.openglstudy.day05.Day05Activity
 import com.example.openglstudy.day06.Day06Activity
+import com.example.openglstudy.day07.Day07Activity
 import com.example.openglstudy.model.DayItem
 
 /**
@@ -41,7 +42,7 @@ class MainActivity : AppCompatActivity() {
             DayItem(4, "纹理贴图基础", "学习纹理加载和映射，将图片渲染到 OpenGL", Day04Activity::class.java),
             DayItem(5, "纹理变换与矩阵操作", "掌握矩阵变换，实现图片的旋转、缩放、平移", Day05Activity::class.java),
             DayItem(6, "EGL 与 GLSurfaceView 深入", "理解 EGL 上下文，掌握渲染模式和线程管理", Day06Activity::class.java),
-            DayItem(7, "FBO（帧缓冲对象）", "学习离屏渲染，实现多通道渲染效果", MainActivity::class.java),
+            DayItem(7, "FBO（帧缓冲对象）", "学习离屏渲染，实现多通道渲染效果", Day07Activity::class.java),
             DayItem(8, "多重纹理与混合", "掌握多纹理使用和混合模式", MainActivity::class.java),
             DayItem(9, "CameraX 基础集成", "集成 CameraX，实现相机预览功能", MainActivity::class.java),
             DayItem(10, "相机预览与 OpenGL 结合", "使用 SurfaceTexture 获取相机数据并渲染", MainActivity::class.java),

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- GLSurfaceView 渲染区域 -->
+    <android.opengl.GLSurfaceView
+        android:id="@+id/gl_surface_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- 控制区域 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="#F5F5F5">
+
+        <!-- 当前滤镜显示 -->
+        <TextView
+            android:id="@+id/tv_current_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="当前滤镜: 无滤镜"
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:textStyle="bold"
+            android:paddingBottom="12dp" />
+
+        <!-- 滤镜按钮（第一行） -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <Button
+                android:id="@+id/btn_filter_none"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="4dp"
+                android:text="原图"
+                android:textSize="13sp"
+                android:background="?attr/selectableItemBackground"
+                android:textColor="#666666" />
+
+            <Button
+                android:id="@+id/btn_filter_grayscale"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="4dp"
+                android:text="灰度"
+                android:textSize="13sp"
+                android:background="?attr/selectableItemBackground"
+                android:textColor="#666666" />
+
+            <Button
+                android:id="@+id/btn_filter_invert"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="反色"
+                android:textSize="13sp"
+                android:background="?attr/selectableItemBackground"
+                android:textColor="#666666" />
+        </LinearLayout>
+
+        <!-- 滤镜按钮（第二行） -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_filter_blur"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="4dp"
+                android:text="模糊"
+                android:textSize="13sp"
+                android:background="?attr/selectableItemBackground"
+                android:textColor="#666666" />
+
+            <Button
+                android:id="@+id/btn_filter_edge"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="4dp"
+                android:text="边缘检测"
+                android:textSize="13sp"
+                android:background="?attr/selectableItemBackground"
+                android:textColor="#666666" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <!-- 说明文本 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="💡 提示: 点击按钮切换滤镜效果。所有滤镜使用 FBO 离屏渲染实现。"
+            android:textSize="12sp"
+            android:textColor="#666666"
+            android:lineSpacingExtra="2dp" />
+    </LinearLayout>
+
+</LinearLayout>

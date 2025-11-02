@@ -77,6 +77,12 @@
             android:exported="false"
             android:screenOrientation="portrait" />
 
+        <!-- Day 07: FBO（帧缓冲对象） -->
+        <activity
+            android:name=".day07.Day07Activity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>
