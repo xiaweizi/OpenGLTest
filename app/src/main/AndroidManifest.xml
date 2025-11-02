@@ -59,6 +59,12 @@
             android:exported="false"
             android:screenOrientation="portrait" />
 
+        <!-- Day 06: EGL 与 GLSurfaceView 深入 -->
+        <activity
+            android:name=".day06.Day06Activity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- GLSurfaceView 渲染区域 -->
+    <android.opengl.GLSurfaceView
+        android:id="@+id/gl_surface_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- 信息显示区域 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="#F5F5F5">
+
+        <!-- 渲染模式显示 -->
+        <TextView
+            android:id="@+id/tv_render_mode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="渲染模式: 持续渲染"
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:paddingBottom="8dp" />
+
+        <!-- FPS 显示 -->
+        <TextView
+            android:id="@+id/tv_fps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="FPS: 0.0"
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:paddingBottom="8dp" />
+
+        <!-- 旋转角度显示 -->
+        <TextView
+            android:id="@+id/tv_rotation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="旋转角度: 0.0°"
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:paddingBottom="16dp" />
+
+        <!-- 按钮区域 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- 切换渲染模式按钮 -->
+            <Button
+                android:id="@+id/btn_toggle_mode"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:text="切换模式"
+                android:textSize="14sp" />
+
+            <!-- 旋转一步按钮 -->
+            <Button
+                android:id="@+id/btn_rotate_step"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:text="旋转一步"
+                android:textSize="14sp"
+                android:enabled="false" />
+
+            <!-- 重置旋转按钮 -->
+            <Button
+                android:id="@+id/btn_reset"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="重置"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- 说明文本 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="💡 提示: 持续渲染模式下图片会自动旋转，按需渲染模式下点击「旋转一步」手动旋转。"
+            android:textSize="12sp"
+            android:textColor="#666666"
+            android:lineSpacingExtra="2dp" />
+    </LinearLayout>
+
+</LinearLayout>
