@@ -83,6 +83,12 @@
             android:exported="false"
             android:screenOrientation="portrait" />
 
+        <!-- Day 08: 简单的图像滤镜 -->
+        <activity
+            android:name=".day08.Day08Activity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>
