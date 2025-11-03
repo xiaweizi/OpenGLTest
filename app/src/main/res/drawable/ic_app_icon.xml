@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    
+    <!-- 背景渐变 -->
+    <path
+        android:pathData="M0,0h108v108h-108z">
+        <aapt:attr xmlns:aapt="http://schemas.android.com/aapt" name="android:fillColor">
+            <gradient
+                android:type="linear"
+                android:startX="0"
+                android:startY="0"
+                android:endX="108"
+                android:endY="108"
+                android:startColor="#667eea"
+                android:endColor="#764ba2" />
+        </aapt:attr>
+    </path>
+    
+    <!-- 相机外框 -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M 34,38 L 74,38 C 76.21,38 78,39.79 78,42 L 78,70 C 78,72.21 76.21,74 74,74 L 34,74 C 31.79,74 30,72.21 30,70 L 30,42 C 30,39.79 31.79,38 34,38 Z" />
+    
+    <!-- 镜头外圈 -->
+    <path
+        android:fillColor="#764ba2"
+        android:pathData="M 54,44 C 60.08,44 65,48.92 65,55 C 65,61.08 60.08,66 54,66 C 47.92,66 43,61.08 43,55 C 43,48.92 47.92,44 54,44 Z" />
+    
+    <!-- 镜头内圈（渐变） -->
+    <path
+        android:pathData="M 54,47 C 58.42,47 62,50.58 62,55 C 62,59.42 58.42,63 54,63 C 49.58,63 46,59.42 46,55 C 46,50.58 49.58,47 54,47 Z">
+        <aapt:attr xmlns:aapt="http://schemas.android.com/aapt" name="android:fillColor">
+            <gradient
+                android:type="radial"
+                android:centerX="54"
+                android:centerY="55"
+                android:gradientRadius="8"
+                android:startColor="#667eea"
+                android:endColor="#4a5568" />
+        </aapt:attr>
+    </path>
+    
+    <!-- 闪光灯 -->
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M 68,42 C 69.66,42 71,43.34 71,45 C 71,46.66 69.66,48 68,48 C 66.34,48 65,46.66 65,45 C 65,43.34 66.34,42 68,42 Z" />
+    
+    <!-- 取景器 -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M 42,31 L 50,31 L 52,35 L 56,35 L 58,31 L 66,31 C 67.1,31 68,31.9 68,33 L 68,36 L 40,36 L 40,33 C 40,31.9 40.9,31 42,31 Z" />
+    
+    <!-- 装饰性光圈效果 -->
+    <path
+        android:fillAlpha="0.3"
+        android:fillColor="#FFFFFF"
+        android:pathData="M 54,50 C 56.76,50 59,52.24 59,55 C 59,55.83 58.78,56.61 58.41,57.29 C 57.61,56.52 56.86,55.67 56.19,54.76 C 55.42,53.71 54.73,52.58 54.12,51.37 C 54.08,50.92 54.05,50.46 54,50 Z" />
+    
+</vector>
+
