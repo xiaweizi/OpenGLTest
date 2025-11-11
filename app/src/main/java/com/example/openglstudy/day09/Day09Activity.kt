@@ -33,7 +33,14 @@ class Day09Activity : AppCompatActivity() {
         private const val TAG = "Day09Activity"
         private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
         private const val REQUEST_CODE_PERMISSIONS = 10
-        private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
+        private val REQUIRED_PERMISSIONS = mutableListOf(
+            Manifest.permission.CAMERA
+        ).apply {
+            // Android 10 及以下需要存储权限
+            if (android.os.Build.VERSION.SDK_INT <= android.os.Build.VERSION_CODES.Q) {
+                add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            }
+        }.toTypedArray()
     }
 
     // UI 组件
@@ -194,9 +201,17 @@ class Day09Activity : AppCompatActivity() {
                 }
 
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
-                    val msg = "拍照成功！保存到：${photoFile.name}"
+                    val msg = "拍照成功！保存到：${photoFile.path}"
                     Log.d(TAG, "takePhoto: $msg")
                     Toast.makeText(baseContext, msg, Toast.LENGTH_LONG).show()
+                    
+                    // 通知系统扫描新文件，让照片立即在相册中显示
+                    android.media.MediaScannerConnection.scanFile(
+                        this@Day09Activity,
+                        arrayOf(photoFile.absolutePath),
+                        arrayOf("image/jpeg"),
+                        null
+                    )
                 }
             }
         )
@@ -220,16 +235,23 @@ class Day09Activity : AppCompatActivity() {
 
     /**
      * 获取输出目录
+     * 保存到系统相册目录：/sdcard/DCIM/Camera/
      */
     private fun getOutputDirectory(): File {
-        val mediaDir = externalMediaDirs.firstOrNull()?.let {
-            File(it, resources.getString(R.string.app_name)).apply { mkdirs() }
+        // 使用系统相册目录（用户可在相册中直接查看）
+        val dcimDir = File(
+            android.os.Environment.getExternalStoragePublicDirectory(
+                android.os.Environment.DIRECTORY_DCIM
+            ),
+            "Camera"
+        )
+        
+        // 确保目录存在
+        if (!dcimDir.exists()) {
+            dcimDir.mkdirs()
         }
-        return if (mediaDir != null && mediaDir.exists()) {
-            mediaDir
-        } else {
-            filesDir
-        }
+        
+        return dcimDir
     }
 
     /**
