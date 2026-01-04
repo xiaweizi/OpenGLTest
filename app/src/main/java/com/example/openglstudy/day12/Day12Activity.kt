@@ -65,7 +65,7 @@ class Day12Activity : AppCompatActivity() {
         setContentView(R.layout.activity_day11_1)
 
         // 设置标题
-        supportActionBar?.title = "Day 11.1: LUT 专业滤镜"
+        supportActionBar?.title = "Day 12: LUT 专业滤镜"
 
         // 初始化 GLSurfaceView
         glSurfaceView = findViewById(R.id.gl_surface_view)

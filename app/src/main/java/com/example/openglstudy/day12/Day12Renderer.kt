@@ -17,7 +17,7 @@ import javax.microedition.khronos.egl.EGLConfig
 import javax.microedition.khronos.opengles.GL10
 
 /**
- * Day 11.1 Renderer
+ * Day 12 Renderer
  * 学习目标：LUT（Look-Up Table）滤镜
  * 实现功能：使用 3D LUT 实现专业级调色滤镜
  */

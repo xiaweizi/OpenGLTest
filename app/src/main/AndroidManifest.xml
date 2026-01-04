@@ -107,7 +107,7 @@
             android:exported="false"
             android:screenOrientation="portrait" />
 
-        <!-- Day 11.1: LUT 专业滤镜 -->
+        <!-- Day 12: LUT 专业滤镜 -->
         <activity
             android:name=".day12.Day12Activity"
             android:exported="false"
